@@ -16,7 +16,8 @@ public class BlogControllerTest {
 	// root / apmsetup , db : blog
 	
 	public void test() {
-		
+		// test method
+		// begin
 	}
 	
 	
