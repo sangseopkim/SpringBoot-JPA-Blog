@@ -16,8 +16,11 @@ public class BlogControllerTest {
 	// root / apmsetup , db : blog
 	
 	public void test() {
-		// test method
-		// begin
+		// 13:34 분 수정
+	}
+	
+	public void test2() {
+		// 13:35 분 수정
 	}
 	
 	
