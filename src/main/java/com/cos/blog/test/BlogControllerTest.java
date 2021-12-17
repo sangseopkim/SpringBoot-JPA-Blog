@@ -8,7 +8,9 @@ public class BlogControllerTest {
 	
 	@GetMapping("/test/hello")
 	public String hello() {
-		return "<h1>hello Spring boot 3</h1><br />DB TEST..  수정2-3";
+		return "<h1>hello Spring boot 3</h1><br />DB TEST..  수정3-3";
+		// 아 어렵다..
+		// 그래도 해야지.. ㅋㅋㅋ
 	}
 	
 	// root / apmsetup , db : blog
