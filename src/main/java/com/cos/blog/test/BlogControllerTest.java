@@ -20,7 +20,7 @@ public class BlogControllerTest {
 	}
 	
 	public void test2() {
-		// 13:35 분 수정
+		// 14:00 분 수정
 	}
 	
 	
