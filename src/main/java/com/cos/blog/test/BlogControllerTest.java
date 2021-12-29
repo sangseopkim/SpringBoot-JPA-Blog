@@ -20,7 +20,9 @@ public class BlogControllerTest {
 	}
 	
 	// root / apmsetup , db : blog
-	
+	private void test() {
+		
+	}
 
 	
 	// 수정
