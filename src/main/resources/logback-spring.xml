@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+	<!--  https://congsong.tistory.com/23?category=749196 , https://kwonnam.pe.kr/wiki/java/log4j/pattern -->
+	
+	<property name="LOGS_ABSOLUTE_PATH" value="./logs" />
+    <!-- 해당 설정파일에서 사용될 값을 정의. LOGS_ABSOLUTE_PATH(절대 경로)-->
+	
+	<!-- Appenders -->
+	<appender name="console-log" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<!-- <Pattern>%d{yy/MM/dd HH:mm:ss} %5p [%c] %m%n</Pattern> -->
+			<pattern>%d{HH:mm:ss.SSS} %-5level [%logger{40} %L] %msg%n</pattern>
+			<!-- <pattern>%d{HH:mm:ss.SSS} %-5level [%C] %msg%n</pattern> -->
+		</encoder>
+	</appender>
+
+	<appender name="console-sql-log" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d %5p %n%m%n</Pattern>
+		</encoder>
+	</appender>
+
+    <appender name="file-log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS_ABSOLUTE_PATH}/logback.log</file>
+        <encoder>
+        	<pattern>[%d{yy-MM-dd HH:mm:ss.SSS}] %-5level [%C %L] %msg%n</pattern>
+            <!-- <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} - %msg%n</pattern> -->
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS_ABSOLUTE_PATH}/logback.%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>5MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+	<!-- resources 밑에 log4jdbc.log4j2.properties 파일 필요 -->
+	<!-- Logger 지역설정으로 additivity 값은 root 설정상속 유무 결정  additivity="false"  배포할때는 level 을 info 이상으로 설정할것 -->
+	<!-- 배포시 yml에서 정의된 on-profile: prod에 의해서 자동으로 로그 설정 변경이 됨  -->
+	<logger name="com.cos.blog" level="debug" additivity="false">
+		<appender-ref ref= "console-log"></appender-ref>
+		<!-- <appender-ref ref="file-log" /> -->
+	</logger>
+	<logger name="org.springframework" level="warn">
+		<appender-ref ref= "console-log"></appender-ref>
+	</logger>
+	
+	<logger name="net.sf.log4jdbc.log.log4j2" level="off"/>
+	<logger name="org.apache.ibatis.logging.jdbc.BaseJdbcLogger" level="off"/>
+	<logger name="jdbc" level="off"/>
+	<logger name="jdbc.connection" level="off"/>
+	<logger name="jdbc.sqltiming" level="off"/>
+	<logger name="jdbc.aduit" level="off"/>
+	<logger name="jdbc.resultset" level="off"/>
+	<logger name="jdbc.resultsettable" level="off"/>
+	<logger name="jdbc.sqlonly" level="info" additivity="false">
+		<appender-ref ref= "console-sql-log"></appender-ref>
+	</logger>
+	
+	<!-- Root Logger -->
+	<root level="debug">
+		<appender-ref ref="console-log" />
+	</root>
+</configuration>
