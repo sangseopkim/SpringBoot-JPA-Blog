@@ -1,10 +1,9 @@
 package com.cos.blog.test;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class BlogControllerTest {
@@ -29,6 +28,7 @@ public class BlogControllerTest {
 		System.out.println("this is myName function");
 	}
 	
+	// test ... 
 	
 	// 수정
 }

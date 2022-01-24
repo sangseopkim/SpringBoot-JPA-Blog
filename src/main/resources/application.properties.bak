@@ -1,0 +1,5 @@
+
+#로깅설정
+#logging.level.root=info
+#logging.level.org.hibernate=info
+#logging.level.org.hibernate.type.descriptor.sql=debug

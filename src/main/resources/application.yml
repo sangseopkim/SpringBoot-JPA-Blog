@@ -1,25 +1,41 @@
-spring:
+# https://getinthere.tistory.com/20
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
 
+spring:
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
 
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
-    username: root
-    password: apmsetup
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://office.zeronesoft.kr:23306/jmon?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: rdc_db
+    password: RDC$passdb
     
   jpa:
-    open-in-view: true
+    open-in-view: true # 영속성 전략 옵션 기본값 true, https://youtu.be/fSXh4hWJtKo?list=PL93mKxaRDidECgjOBjPgI3Dyo8ka6Ilqm, 영속성 컨텍스트를 컨트롤러 에서 시작/종료한다
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: false
     show-sql: true
-    properties.hibernate.format_sql: true
+    properties:
+      hibernate.format_sql: true
+
+# Jpa설정 옵션 의미
+# use-new-id-generator-mappings: false  스프링의 JPA 넘버링 전략을 따르지 않고 DB의 넘버링 전략을 따른다
+# PhysicalNamingStrategyStandardImpl => 엔티티(테이블) 만들때 변수명 그대로 필드명을 생성
+# SpringPhysicalNamingStrategy => myEmail ->my_email 식으로 변경해서 테이블을 만든다 
+ 
 
   jackson:
     serialization:
